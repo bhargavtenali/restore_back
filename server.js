@@ -117,7 +117,7 @@ const authenticationToken = (request, response, next) => {
   }
 };
 
-app.get("/restore", authenticationToken, async (request, response) => {
+app.post("/restore", authenticationToken, async (request, response) => {
   const imageUrl = request.body.imageUrl;
   // POST request to Replicate to start the image restoration generation process
   let startResponse = await fetch("https://api.replicate.com/v1/predictions", {
