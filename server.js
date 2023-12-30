@@ -119,7 +119,6 @@ const authenticationToken = (request, response, next) => {
 
 app.post("/restore", authenticationToken, async (request, response) => {
   const imgUrl = request.body.imgUrl;
-  console.log(imgUrl);
   // POST request to Replicate to start the image restoration generation process
   let startResponse = await fetch("https://api.replicate.com/v1/predictions", {
     method: "POST",
@@ -135,7 +134,6 @@ app.post("/restore", authenticationToken, async (request, response) => {
   });
 
   let jsonStartResponse = await startResponse.json();
-  console.log(jsonStartResponse);
   let endpointUrl = jsonStartResponse.urls.get;
 
   // GET request to get the status of the image restoration process & return the result when it's ready
