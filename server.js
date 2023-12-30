@@ -90,7 +90,7 @@ app.post("/login", async (request, response) => {
         expiresIn: "1d",
       });
       response
-        .cookie("access_token", jwtToken, { httpOnly: true, secure: true })
+        .cookie("access_token", jwtToken, { httpOnly: true })
         .status(200)
         .json({ username: username });
     } else {
