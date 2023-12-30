@@ -14,7 +14,7 @@ const corsOptions = {
   origin: [/^https:\/\/restorephotos\.netlify\.app\/.*/, /^http:\/\/localhost/], // Add localhost as an allowed origin
   methods: "GET,POST",
 };
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
