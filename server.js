@@ -11,7 +11,11 @@ require("dotenv").config();
 let database;
 const app = express();
 const corsOptions = {
-  origin: [/^https:\/\/restorephotos\.netlify\.app\/.*/, /^http:\/\/localhost/], // Add localhost as an allowed origin
+  origin: [
+    /^https:\/\/restorephotos\.netlify\.app\/.*/,
+    /^http:\/\/localhost/,
+    "https://restorephotos.netlify.app",
+  ],
   methods: "GET,POST",
   credentials: true,
 };
