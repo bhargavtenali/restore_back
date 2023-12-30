@@ -118,7 +118,8 @@ const authenticationToken = (request, response, next) => {
 };
 
 app.post("/restore", authenticationToken, async (request, response) => {
-  const imageUrl = request.body.imageUrl;
+  const imgUrl = request.body.imgUrl;
+  console.log(imgUrl);
   // POST request to Replicate to start the image restoration generation process
   let startResponse = await fetch("https://api.replicate.com/v1/predictions", {
     method: "POST",
@@ -129,11 +130,12 @@ app.post("/restore", authenticationToken, async (request, response) => {
     body: JSON.stringify({
       version:
         "9283608cc6b7be6b65a8e44983db012355fde4132009bf99d976b2f0896856a3",
-      input: { img: imageUrl, version: "v1.4", scale: 2 },
+      input: { img: imgUrl, version: "v1.4", scale: 2 },
     }),
   });
 
   let jsonStartResponse = await startResponse.json();
+  console.log(jsonStartResponse);
   let endpointUrl = jsonStartResponse.urls.get;
 
   // GET request to get the status of the image restoration process & return the result when it's ready
