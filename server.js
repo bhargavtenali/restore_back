@@ -10,7 +10,11 @@ require("dotenv").config();
 
 let database;
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: ["https://restorephotos.netlify.app/", "http://localhost:3000"], // Add localhost as an allowed origin
+  methods: "GET,POST",
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -31,8 +35,8 @@ const initializeDBandServer = async () => {
     if (createTableResult.changes > 0) {
       console.log("Table 'user' created successfully.");
     }
-    app.listen(3000, () => {
-      console.log("Restore back is running on http://localhost:3000/");
+    app.listen(8080, () => {
+      console.log("Restore back is running on http://localhost:8080/");
     });
   } catch (error) {
     console.log(`Database error is ${error.message}`);
