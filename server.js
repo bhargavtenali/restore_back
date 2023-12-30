@@ -47,7 +47,7 @@ const initializeDBandServer = async () => {
 initializeDBandServer();
 
 //ap1 register user
-app.post("/register/", async (request, response) => {
+app.post("/register", async (request, response) => {
   const { username, password, secret } = request.body;
   if (!secret || secret !== process.env.SECRET) {
     return response.status(400).send("Invalid Secret");
@@ -73,7 +73,7 @@ app.post("/register/", async (request, response) => {
 });
 
 //api2 login user
-app.post("/login/", async (request, response) => {
+app.post("/login", async (request, response) => {
   const { username, password } = request.body;
   const checkUser = `select * from user where username='${username}';`;
   const dbUserExist = await database.get(checkUser);
@@ -117,7 +117,7 @@ const authenticationToken = (request, response, next) => {
   }
 };
 
-app.post("/restore", authenticationToken, async (request, response) => {
+app.post("/generate", authenticationToken, async (request, response) => {
   const imgUrl = request.body.imgUrl;
   // POST request to Replicate to start the image restoration generation process
   let startResponse = await fetch("https://api.replicate.com/v1/predictions", {
