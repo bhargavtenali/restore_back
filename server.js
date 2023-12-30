@@ -30,10 +30,7 @@ const initializeDBandServer = async () => {
     `);
     if (createTableResult.changes > 0) {
       console.log("Table 'user' created successfully.");
-    } else {
-      console.log("Table 'user' already exists.");
     }
-
     app.listen(3000, () => {
       console.log("Restore back is running on http://localhost:3000/");
     });
