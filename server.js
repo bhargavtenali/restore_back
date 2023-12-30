@@ -13,10 +13,11 @@ const app = express();
 const corsOptions = {
   origin: [/^https:\/\/restorephotos\.netlify\.app\/.*/, /^http:\/\/localhost/], // Add localhost as an allowed origin
   methods: "GET,POST",
+  credentials: true,
 };
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors(corsOptions));
 
 const initializeDBandServer = async () => {
   try {
@@ -85,7 +86,7 @@ app.post("/login", async (request, response) => {
         expiresIn: "1d",
       });
       response
-        .cookie("access_token", jwtToken, { httpOnly: true })
+        .cookie("access_token", jwtToken, { httpOnly: true, secure: true })
         .status(200)
         .json({ username: username });
     } else {
