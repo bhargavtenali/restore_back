@@ -14,9 +14,9 @@ const corsOptions = {
   origin: [/^https:\/\/restorephotos\.netlify\.app\/.*/, /^http:\/\/localhost/], // Add localhost as an allowed origin
   methods: "GET,POST",
 };
-app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 const initializeDBandServer = async () => {
   try {
@@ -119,6 +119,7 @@ const authenticationToken = (request, response, next) => {
 
 app.post("/generate", authenticationToken, async (request, response) => {
   const imgUrl = request.body.imgUrl;
+  console.log(imgUrl);
   // POST request to Replicate to start the image restoration generation process
   let startResponse = await fetch("https://api.replicate.com/v1/predictions", {
     method: "POST",
