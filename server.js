@@ -87,13 +87,14 @@ app.post("/login", async (request, response) => {
     if (checkPassword === true) {
       const payload = { username: username };
       const jwtToken = jwt.sign(payload, process.env.SECRET, {
-        expiresIn: "1h",
+        expiresIn: "900000",
       });
       response
         .cookie("access_token", jwtToken, {
           httpOnly: true,
           secure: true,
           sameSite: "none",
+          expires: new Date(Date.now() + 900000),
         })
         .status(200)
         .json({ username: username });
