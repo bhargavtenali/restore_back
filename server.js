@@ -99,11 +99,11 @@ app.post("/login", async (request, response) => {
         .status(200)
         .json({ username: username });
     } else {
-      response.status(400);
+      response.status(401);
       response.send("Invalid password");
     }
   } else {
-    response.status(400);
+    response.status(401);
     response.send("Invalid user");
   }
 });
