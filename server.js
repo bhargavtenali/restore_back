@@ -145,6 +145,10 @@ app.post("/generate", authenticationToken, async (request, response) => {
   });
 
   let jsonStartResponse = await startResponse.json();
+  console.log("jsonStartResponse = ", jsonStartResponse);
+  if (!jsonStartResponse.urls) {
+    return response.status(401).json("Token Expired");
+  }
   let endpointUrl = jsonStartResponse.urls.get;
 
   // GET request to get the status of the image restoration process & return the result when it's ready
