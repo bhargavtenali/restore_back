@@ -143,7 +143,7 @@ app.post("/generate", authenticationToken, async (request, response) => {
       input: { img: imgUrl, version: "v1.4", scale: 2 },
     }),
   });
-
+  console.log(JSON.stringify(startResponse))
   let jsonStartResponse = await startResponse.json();
   console.log("jsonStartResponse = ", jsonStartResponse);
   if (!jsonStartResponse.urls) {
