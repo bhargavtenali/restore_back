@@ -135,11 +135,11 @@ app.post("/generate", authenticationToken, async (request, response) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Token " + process.env.REPLICATE_API_KEY,
+      Authorization: "Bearer " + process.env.REPLICATE_API_KEY,
     },
     body: JSON.stringify({
       version:
-        "9283608cc6b7be6b65a8e44983db012355fde4132009bf99d976b2f0896856a3",
+        "0fbacf7afc6c144e5be9767cff80f25aff23e52b0708f17e20f9879b2f21516c",
       input: { img: imgUrl, version: "v1.4", scale: 2 },
     }),
   });
@@ -160,7 +160,7 @@ app.post("/generate", authenticationToken, async (request, response) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Token " + process.env.REPLICATE_API_KEY,
+        Authorization: "Bearer " + process.env.REPLICATE_API_KEY,
       },
     });
     let jsonFinalResponse = await finalResponse.json();
